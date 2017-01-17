@@ -50,15 +50,12 @@ class ConsoleLogEntry extends Gatherer {
   }
 
   afterPass(options) {
-    return this.endConsoleMessageCollect(options.driver)
-        .then(entries => {
-          return entries;
-        }, err => {
-          return {
-            rawValue: -1,
-            debugString: err.message
-          };
-        });
+    return this.endConsoleMessageCollect(options.driver).catch(err => {
+      return {
+        rawValue: -1,
+        debugString: err.message
+      };
+    });
   }
 }
 

@@ -338,10 +338,7 @@
     }, {
       "name": "Avoiding deprecated APIs and browser interventions",
       "audits": {
-        "deprecations": {
-          "expectedValue": true,
-          "weight": 1
-        }
+        "deprecations": {}
       }
     }, {
       "name": "Accessibility",

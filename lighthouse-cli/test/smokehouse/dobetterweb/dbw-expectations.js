@@ -31,7 +31,7 @@ module.exports = [
         score: false,
         extendedInfo: {
           value: {
-            length: 10
+            length: 11
           }
         }
       },

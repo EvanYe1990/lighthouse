@@ -18,6 +18,8 @@
 
 /**
  * @fileoverview Audits a page to determine if it is calling deprecated APIs.
+ * This is done by collecting console log messages and filtering them by ones
+ * that contain deprecated API warnings sent by Chrome.
  */
 
 const Audit = require('./audit');

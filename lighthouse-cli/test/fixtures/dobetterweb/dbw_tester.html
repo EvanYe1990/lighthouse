@@ -310,7 +310,8 @@ function unoptimizedImagesTest() {
 function deprecationsTest() {
   stampTemplate('deprecations-tmpl', document.head);
 
-  // Some APIs atm are not triggering Chrome's deprecation messags. https://crbug.com/680832.
+  // TODO: some deprecated API messages are not currently being logged correctly.
+  // See: https://crbug.com/680832
   // try {
   //   MediaStreamTrack.getSources(); // FAIL
   // } catch(e) {}
@@ -319,7 +320,7 @@ function deprecationsTest() {
 
   // FAIL
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'https://lighthouse-viewer.appspot.com/data', false);
+  xhr.open('GET', 'dbw_tester.html', false);
   xhr.send();
 
   window.webkitStorageInfo.PERSISTENT // FAIL

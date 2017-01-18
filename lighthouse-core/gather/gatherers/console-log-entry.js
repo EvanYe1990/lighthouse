@@ -35,27 +35,21 @@ class ConsoleLogEntry extends Gatherer {
     this._logEntries.push(entry);
   }
 
-  beginConsoleMessageCollect(driver) {
-    driver.on('Log.entryAdded', this._onConsoleEntryAdded);
-    return driver.sendCommand('Log.enable');
-  }
-
-  endConsoleMessageCollect(driver) {
-    driver.off('Log.entryAdded', this._onConsoleEntryAdded);
-    return driver.sendCommand('Log.disable').then(_ => this._logEntries);
-  }
-
   beforePass(options) {
-    return this.beginConsoleMessageCollect(options.driver);
+    options.driver.on('Log.entryAdded', this._onConsoleEntryAdded);
+    return options.driver.sendCommand('Log.enable');
   }
 
   afterPass(options) {
-    return this.endConsoleMessageCollect(options.driver).catch(err => {
-      return {
-        rawValue: -1,
-        debugString: err.message
-      };
-    });
+    options.driver.off('Log.entryAdded', this._onConsoleEntryAdded);
+    return options.driver.sendCommand('Log.disable')
+        .then(_ => this._logEntries)
+        .catch(err => {
+          return {
+            rawValue: -1,
+            debugString: err.message
+          };
+        });
   }
 }
 
